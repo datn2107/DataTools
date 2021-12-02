@@ -138,7 +138,7 @@ def parser_argument():
     parser = argparse.ArgumentParser()
     parser.add_argument('--metadata', type=str, help="Metadata path (csv file)",
                         default=r'D:\Machine Learning Project\5kCompliance\dataset\train\train_meta.csv')
-    parser.add_argument('--image_dir', type=str, help="Directory path contain images",
+    parser.add_argument('--img_dir', type=str, help="Directory path contain images",
                         default=r'D:\Machine Learning Project\5kCompliance\dataset\train\images')
     parser.add_argument('--config', type=str, help="Config path",
                         default=os.path.join(os.getcwd(), 'config.yaml'))
@@ -157,10 +157,10 @@ def read_config(config_path, mode):
 if __name__ == '__main__':
     args = parser_argument()
 
-    img_dir = args.image_dir
+    img_dir = args.img_dir
     df_path = args.metadata
     kwags = read_config(args.config, args.mode)
-    # augment_image(img_dir, df_path, **kwags)
+    augment_image(img_dir, df_path, **kwags)
 
     # relabel(img_dir=r'D:\Machine Learning Project\5kCompliance\dataset\train\images',
     #         df_path=r'D:\Machine Learning Project\5kCompliance\dataset\train\train_meta.csv',
