@@ -9,7 +9,7 @@ import skimage.transform as skt
 import skimage.exposure as ske
 import skimage.util as sku
 import matplotlib.pyplot as plt
-from typing import Optional, Tuple, List
+from typing import Union, Tuple, List
 
 
 def read_metadata(df_path):
@@ -28,7 +28,7 @@ def read_metadata(df_path):
     return df
 
 
-def augment_image(image, vflip: bool = False, hflip: bool = False, rotate_degree: Optional[List, Tuple] = None,
+def augment_image(image, vflip: bool = False, hflip: bool = False, rotate_degree: Union[List, Tuple] = None,
                   crop_size: tuple = None, brightness: bool = False, gau_noise: bool = False):
     """
     This function use to apply augmentation on image. There are:
