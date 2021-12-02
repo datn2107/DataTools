@@ -1,0 +1,7 @@
+augmentation:
+  vflip: true # vertical flip
+  hflip: true # horizontal fip
+  rotate_degree: (30, 40) # random rotate in range [x, y) degree (clockwise and anti-clockwise)
+  crop_size: null # random crop by given size (h, w)
+  brightness: true # random increase and decrease brightness
+  gau_noise: true

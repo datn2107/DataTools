@@ -1,5 +1,7 @@
 import os
 import cv2
+import yaml
+import argparse
 import numpy as np
 import pandas as pd
 import random
@@ -64,7 +66,7 @@ def augment_image(image, vflip: bool = False, hflip: bool = False, rotate_degree
 
     if brightness is not None:
         gamma_bright = random.randrange(3, 5) / 10
-        gamma_dark = random.randrange(20, 22) / 10
+        gamma_dark = random.randrange(21, 23) / 10
         aug_imgs['brighter'] = ske.adjust_gamma(image, gamma=gamma_bright)
         aug_imgs['darker'] = ske.adjust_gamma(image, gamma=gamma_dark)
 
@@ -131,9 +133,33 @@ def relabel(img_dir, df_path, label_cols=None, label_nan=False):
     df.to_csv(df_path)
 
 
+def parser_argument():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--metadata', type=str, help="Metadata path (csv file)",
+                        default=r'D:\Machine Learning Project\5kCompliance\dataset\train\train_meta.csv')
+    parser.add_argument('--image_dir', type=str, help="Directory path contain images",
+                        default=r'D:\Machine Learning Project\5kCompliance\dataset\train\images')
+    parser.add_argument('--config', type=str, help="Config path",
+                        default=os.path.join(os.getcwd(), 'config.yaml'))
+
+    return parser.parse_args()
+
+
+def read_config(config_path):
+    with open(config_path, 'r') as stream:
+        config_data = yaml.safe_load(stream)
+    return config_data['augmentation']
+
+
 if __name__ == '__main__':
+    args = parser_argument()
+
+    img_dir = args.image_dir
+    df_path = args.metadata
+    kwags = read_config(args.config)
+    augment_image(img_dir, df_path, **kwags)
+
     pass
     # relabel(img_dir=r'D:\Machine Learning Project\5kCompliance\dataset\train\images',
     #         df_path=r'D:\Machine Learning Project\5kCompliance\dataset\train\train_meta.csv',
     #         label_cols='distancing', label_nan=True)
-
