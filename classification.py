@@ -77,8 +77,7 @@ def augment_image(image, vflip: bool = False, hflip: bool = False, rotate_degree
     return aug_imgs
 
 
-def augment_data_classification(img_dir, df_path, vflip: bool = False, hflip: bool = False, rotate_degree: tuple = None,
-                                crop_size: tuple = None, brightness: bool = False, gau_noise: bool = False):
+def augment_data_classification(img_dir, df_path, **kwargs):
     """
     This will automatic add augmentation image in to image directory and add label of those new images to dataframe.
     """
@@ -89,8 +88,7 @@ def augment_data_classification(img_dir, df_path, vflip: bool = False, hflip: bo
         img_type = fname.split('.')[-1]
         image_path = os.path.join(img_dir, fname)
         image = cv2.imread(image_path)
-        aug_imgs = augment_image(image, vflip=vflip, hflip=hflip, rotate_degree=rotate_degree, crop_size=crop_size,
-                                 brightness=brightness, gau_noise=gau_noise)
+        aug_imgs = augment_image(image, **kwargs)
 
         for aug_type, aug_img in aug_imgs.items():
             aug_fname = img_name + '_' + aug_type + '.' + img_type
@@ -160,7 +158,7 @@ if __name__ == '__main__':
     img_dir = args.img_dir
     df_path = args.metadata
     kwags = read_config(args.config, args.mode)
-    augment_image(img_dir, df_path, **kwags)
+    augment_data_classification(img_dir, df_path, **kwags)
 
     # relabel(img_dir=r'D:\Machine Learning Project\5kCompliance\dataset\train\images',
     #         df_path=r'D:\Machine Learning Project\5kCompliance\dataset\train\train_meta.csv',
