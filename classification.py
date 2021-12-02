@@ -141,14 +141,16 @@ def parser_argument():
                         default=r'D:\Machine Learning Project\5kCompliance\dataset\train\images')
     parser.add_argument('--config', type=str, help="Config path",
                         default=os.path.join(os.getcwd(), 'config.yaml'))
+    parser.add_argument('--mode', type=str, help="What do you want to do ? (augmentation or relabel)",
+                        default="augmentation")
 
     return parser.parse_args()
 
 
-def read_config(config_path):
+def read_config(config_path, mode):
     with open(config_path, 'r') as stream:
         config_data = yaml.safe_load(stream)
-    return config_data['augmentation']
+    return config_data[mode]
 
 
 if __name__ == '__main__':
@@ -156,10 +158,9 @@ if __name__ == '__main__':
 
     img_dir = args.image_dir
     df_path = args.metadata
-    kwags = read_config(args.config)
+    kwags = read_config(args.config, args.mode)
     augment_image(img_dir, df_path, **kwags)
 
-    pass
     # relabel(img_dir=r'D:\Machine Learning Project\5kCompliance\dataset\train\images',
     #         df_path=r'D:\Machine Learning Project\5kCompliance\dataset\train\train_meta.csv',
     #         label_cols='distancing', label_nan=True)
