@@ -9,6 +9,7 @@ import skimage.transform as skt
 import skimage.exposure as ske
 import skimage.util as sku
 import matplotlib.pyplot as plt
+from typing import Optional, Tuple, List
 
 
 def read_metadata(df_path):
@@ -27,8 +28,8 @@ def read_metadata(df_path):
     return df
 
 
-def augment_image(image, vflip: bool = False, hflip: bool = False, rotate_degree: tuple = None, crop_size: tuple = None,
-                  brightness: bool = False, gau_noise: bool = False):
+def augment_image(image, vflip: bool = False, hflip: bool = False, rotate_degree: Optional[List, Tuple] = None,
+                  crop_size: tuple = None, brightness: bool = False, gau_noise: bool = False):
     """
     This function use to apply augmentation on image. There are:
         - Vertical Flip
@@ -159,7 +160,7 @@ if __name__ == '__main__':
     img_dir = args.image_dir
     df_path = args.metadata
     kwags = read_config(args.config, args.mode)
-    augment_image(img_dir, df_path, **kwags)
+    # augment_image(img_dir, df_path, **kwags)
 
     # relabel(img_dir=r'D:\Machine Learning Project\5kCompliance\dataset\train\images',
     #         df_path=r'D:\Machine Learning Project\5kCompliance\dataset\train\train_meta.csv',
