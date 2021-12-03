@@ -270,7 +270,7 @@ def parser_argument():
     parser.add_argument('--img_dir', type=str, help="Directory path contain images",
                         default=r'D:\Machine Learning Project\5kCompliance\dataset\train\images')
     parser.add_argument('--config', type=str, help="Config path",
-                        default=os.path.join(os.getcwd(), 'config.yaml'))
+                        default=os.path.join(os.path.dirname(os.path.realpath(__file__)), 'config.yaml'))
     parser.add_argument('--mode', type=str, help="What do you want to do ? (augmentation or relabel)",
                         default="augmentation")
 
