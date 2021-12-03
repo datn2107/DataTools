@@ -1,7 +1,31 @@
 augmentation:
-  vflip: true # vertical flip
-  hflip: true # horizontal fip
-  rotate_degree: [25, 30] # random rotate in range [x, y) degree (clockwise and anti-clockwise)
-  crop_size: null # random crop by given size (h, w)
-  brightness: true # random increase and decrease brightness
-  gau_noise: true
+  # Vertical Flip and Horizontal Fip
+  vflip: null # boolean
+  hflip: true # boolean
+
+  # Random Rotate
+  rotate_degree: [0.25, 0.30] # random rotate in range [float, float] degree (clockwise and anti-clockwise)
+
+  # Random Shear
+  shear: [0.35,0.45]  # random shear in range [float, float] degree
+
+  # Random Crop
+  crop_size: null # crop size: [int, int]
+
+  # Random Cutout
+  cutout: [2, [0.30, 0.35]] # [[min_count (int), max_count+1 (int)], [min_frac_size (float), max_frac_size (float)]]
+
+  # Random Zoom In and Zoom Out
+  random_zoom_in: [0.40, 0.5] # [min_zoom_frac (float), max_zoom_frac (float)]
+  random_zoom_out: null # [min_zoom_frac (float), max_zoom_frac (float)]
+
+  # Vertical Shift, Horizontal Shift and Both
+  vshift: null # [min_shift_frac (float), max_shift_frac (float)]
+  hshift: null # [min_shift_frac (float), max_shift_frac (float)]
+  vhshift: [[0.25, 0.3], [0.25, 0.3]] # [[min_vshift_frac (float), max_vshift_frac (float)], [min_hshift_frac (float), max_hshift_frac (float)]]
+
+  # Random adjust Brightness both darker and brighter
+  brightness: false # boolean
+
+  # Random add Gaussian Noise
+  gau_noise: false # boolean
