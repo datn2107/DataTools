@@ -4,10 +4,10 @@ augmentation:
   hflip: true # boolean
 
   # Random Rotate
-  rotate_degree: [0.25, 0.30] # random rotate in range [float, float] degree (clockwise and anti-clockwise)
+  rotate_degree: [40, 45] # random rotate in range [float, float] degree (clockwise and anti-clockwise)
 
   # Random Shear
-  shear: [0.35,0.45]  # random shear in range [float, float] degree
+  shear: [0.40,0.45]  # random shear in range [float, float] degree
 
   # Random Crop
   crop_size: null # crop size: [int, int]
@@ -16,7 +16,7 @@ augmentation:
   cutout: [2, [0.30, 0.35]] # [[min_count (int), max_count+1 (int)], [min_frac_size (float), max_frac_size (float)]]
 
   # Random Zoom In and Zoom Out
-  random_zoom_in: [0.40, 0.5] # [min_zoom_frac (float), max_zoom_frac (float)]
+  random_zoom_in: [0.40, 0.45] # [min_zoom_frac (float), max_zoom_frac (float)]
   random_zoom_out: null # [min_zoom_frac (float), max_zoom_frac (float)]
 
   # Vertical Shift, Horizontal Shift and Both

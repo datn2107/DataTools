@@ -125,8 +125,8 @@ def augment_image(image, vflip=False, hflip=False, rotate_degree=None, shear=Non
             angle = rotate_degree
             anti_angle = -rotate_degree
         else:
-            angle = round(random.uniform(rotate_degree[0], rotate_degree[1]), 2)
-            anti_angle = -round(random.uniform(rotate_degree[0], rotate_degree[1]), 2)
+            angle = random.randint(rotate_degree[0], rotate_degree[1])
+            anti_angle = -random.randint(rotate_degree[0], rotate_degree[1])
 
         if random.getrandbits(1) == 0:
             aug_imgs['rotate'] = (skt.rotate(image, angle=angle) * 255).astype(np.uint8)
@@ -146,16 +146,16 @@ def augment_image(image, vflip=False, hflip=False, rotate_degree=None, shear=Non
 
     if random_zoom_in is not None:
         if type(random_zoom_in) not in ARRAY_LIKE:
-            zoom_frac = 1 - random_zoom_in
+            zoom_frac = 1 + random_zoom_in
         else:
-            zoom_frac = 1 - round(random.uniform(random_zoom_in[0], random_zoom_in[1]), 2)
+            zoom_frac = 1 + round(random.uniform(random_zoom_in[0], random_zoom_in[1]), 2)
         aug_imgs['zoom_in'] = zoom_image(image, zoom_frac)
 
     if random_zoom_out is not None:
         if type(random_zoom_out) not in ARRAY_LIKE:
-            zoom_frac = 1 + random_zoom_out
+            zoom_frac = 1 - random_zoom_out
         else:
-            zoom_frac = 1 + round(random.uniform(random_zoom_out[0], random_zoom_out[1]), 2)
+            zoom_frac = 1 - round(random.uniform(random_zoom_out[0], random_zoom_out[1]), 2)
         aug_imgs['zoom_out'] = zoom_image(image, zoom_frac)
 
     if vshift is not None:
@@ -289,17 +289,17 @@ if __name__ == '__main__':
     img_dir = args.img_dir
     df_path = args.metadata
     kwags = read_config(args.config, args.mode)
-    # augment_data_classification(img_dir, df_path, **kwags)
+    augment_data_classification(img_dir, df_path, **kwags)
 
-    image = cv2.imread(
-        r'D:\Machine Learning Project\5kCompliance\dataset\face_mask\FaceMaskClassification\Face-Mask-Dataset\Train\WithMask\facemaskdetection_0_maksssksksss77.png')
-    image = cv2.resize(image, (128, 128))
-    dic = augment_image(image, **kwags)
-    for key, value in dic.items():
-        print(key)
-        print(value.shape)
-        plt.imshow(cv2.cvtColor(value, cv2.COLOR_RGB2BGR))
-        plt.show()
+    # image = cv2.imread(
+    #     r'D:\Machine Learning Project\5kCompliance\dataset\face_mask\FaceMaskClassification\Face-Mask-Dataset\Train\WithMask\facemaskdetection_0_maksssksksss77.png')
+    # image = cv2.resize(image, (128, 128))
+    # dic = augment_image(image, **kwags)
+    # for key, value in dic.items():
+    #     print(key)
+    #     print(value.shape)
+    #     plt.imshow(cv2.cvtColor(value, cv2.COLOR_RGB2BGR))
+    #     plt.show()
 
     # relabel(img_dir=r'D:\Machine Learning Project\5kCompliance\dataset\train\images',
     #         df_path=r'D:\Machine Learning Project\5kCompliance\dataset\train\train_meta.csv',
