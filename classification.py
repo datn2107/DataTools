@@ -289,21 +289,21 @@ if __name__ == '__main__':
     img_dir = args.img_dir
     df_path = args.metadata
     kwags = read_config(args.config, args.mode)
-    # augment_data_classification(img_dir, df_path, **kwags)
+    augment_data_classification(img_dir, df_path, **kwags)
 
-    dataroot = r'D:\Machine Learning Project\5kCompliance\dataset\face_mask\FaceMaskClassification\Face-Mask-Dataset\Train\WithMask'
-    image = random.choice(os.listdir(dataroot))
-    # image = 'facemaskdetection_1_maksssksksss135.png'
-    print(image)
-    image = cv2.imread(
-        os.path.join(dataroot, image))
-    image = cv2.resize(image, (128, 128))
-    dic = augment_image(image, **kwags)
-    for key, value in dic.items():
-        print(key)
-        print(value.shape)
-        plt.imshow(cv2.cvtColor(value, cv2.COLOR_RGB2BGR))
-        plt.show()
+    # dataroot = r'D:\Machine Learning Project\5kCompliance\dataset\face_mask\FaceMaskClassification\Face-Mask-Dataset\Train\WithMask'
+    # image = random.choice(os.listdir(dataroot))
+    # # image = 'facemaskdetection_1_maksssksksss135.png'
+    # print(image)
+    # image = cv2.imread(
+    #     os.path.join(dataroot, image))
+    # image = cv2.resize(image, (128, 128))
+    # dic = augment_image(image, **kwags)
+    # for key, value in dic.items():
+    #     print(key)
+    #     print(value.shape)
+    #     plt.imshow(cv2.cvtColor(value, cv2.COLOR_RGB2BGR))
+    #     plt.show()
 
     # relabel(img_dir=r'D:\Machine Learning Project\5kCompliance\dataset\train\images',
     #         df_path=r'D:\Machine Learning Project\5kCompliance\dataset\train\train_meta.csv',
