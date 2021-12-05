@@ -4,25 +4,25 @@ augmentation:
   hflip: true # boolean
 
   # Random Rotate
-  rotate_degree: [40, 45] # random rotate in range [float, float] degree (clockwise and anti-clockwise)
+  rotate_degree: [35, 40] # random rotate in range [float, float] degree (clockwise and anti-clockwise)
 
   # Random Shear
-  shear: [0.40,0.45]  # random shear in range [float, float] degree
+  shear: null  # random shear in range [float, float] degree
 
   # Random Crop
   crop_size: null # crop size: [int, int]
 
   # Random Cutout
-  cutout: [2, [0.30, 0.35]] # [[min_count (int), max_count+1 (int)], [min_frac_size (float), max_frac_size (float)]]
+  cutout: [2, [0.20, 0.22]] # [[min_count (int), max_count+1 (int)], [min_frac_size (float), max_frac_size (float)]]
 
   # Random Zoom In and Zoom Out
-  random_zoom_in: [0.40, 0.45] # [min_zoom_frac (float), max_zoom_frac (float)]
+  random_zoom_in: [0.4, 0.45] # [min_zoom_frac (float), max_zoom_frac (float)]
   random_zoom_out: null # [min_zoom_frac (float), max_zoom_frac (float)]
 
   # Vertical Shift, Horizontal Shift and Both
   vshift: null # [min_shift_frac (float), max_shift_frac (float)]
   hshift: null # [min_shift_frac (float), max_shift_frac (float)]
-  vhshift: [[0.25, 0.3], [0.25, 0.3]] # [[min_vshift_frac (float), max_vshift_frac (float)], [min_hshift_frac (float), max_hshift_frac (float)]]
+  vhshift: [[0.15, 0.2], [0.15, 0.2]] # [[min_vshift_frac (float), max_vshift_frac (float)], [min_hshift_frac (float), max_hshift_frac (float)]]
 
   # Random adjust Brightness both darker and brighter
   brightness: false # boolean
